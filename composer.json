@@ -1,0 +1,28 @@
+{
+    "name": "black-lamp/yii2-slider",
+    "description": "",
+    "keywords": ["yii2", "module", "widget", "slick", "slider"],
+    "type": "yii2-extension",
+    "license": "GNU Public License",
+    "support": {
+        "source": "https://github.com/black-lamp/yii2-slider",
+        "issues": "https://github.com/black-lamp/yii2-slider/issues"
+    },
+    "require": {
+        "yiisoft/yii2": ">=2.0.4",
+        "yiisoft/yii2-bootstrap": "*",
+        "black-lamp/yii2-text-editor": "*",
+        "bower-asset/slick-carousel": "1.6.0"
+    },
+    "authors": [
+        {
+            "name": "Vladimir Kuprienko",
+            "email": "vldmr.kuprienko@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "bl\\slider\\": ""
+        }
+    }
+}

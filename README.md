@@ -3,6 +3,10 @@ Slider module for Yii2
 Module for adding sliders to site across dashboard.
 This extension uses [Slick slider](http://kenwheeler.github.io/slick/).
 
+[![Latest Stable Version](https://poser.pugx.org/black-lamp/yii2-slider/v/stable)](https://packagist.org/packages/black-lamp/yii2-slider)
+[![Latest Unstable Version](https://poser.pugx.org/black-lamp/yii2-slider/v/unstable)](https://packagist.org/packages/black-lamp/yii2-slider)
+[![License](https://poser.pugx.org/black-lamp/yii2-slider/license)](https://packagist.org/packages/black-lamp/yii2-slider)
+
 Installation
 ------------
 #### Run command

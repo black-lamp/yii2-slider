@@ -16,7 +16,7 @@ or add
 to the require section of your composer.json.
 #### Applying migrations
 ```
-`yii migrate --migrationPath=@vendor/black-lamp/yii2-slider/migrations`
+yii migrate --migrationPath=@vendor/black-lamp/yii2-slider/migrations
 ```
 #### Add module to application config
 ```php
@@ -31,7 +31,7 @@ to the require section of your composer.json.
 
 |Option|Type|Default|Description|
 |---|---|---|---|
-|imagesDir|string|img/slider|Path to images catalog in web folder (need for uploading images to the server across dashboard)|
+|imagesDir|string|@frontend/web/img/slider|Path to images catalog in web folder (need for uploading images to the server across dashboard)|
 |imagePrefix|string|slider|Prefix for uploaded images (need for uploading images to the server across dashboard)|
 
 Using

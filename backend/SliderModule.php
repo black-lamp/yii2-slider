@@ -7,7 +7,7 @@ use yii\base\Module;
 /**
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  *
- * @property string $imagesDir
+ * @property string $imagesRoot
  * @property string $imagePrefix
  */
 class SliderModule extends Module
@@ -18,7 +18,7 @@ class SliderModule extends Module
     /**
      * @var string Path to image directory
      */
-    public $imagesDir = 'img/slider';
+    public $imagesRoot = '@frontend/web/img/slider';
     /**
      * @var string prefix for image files
      */

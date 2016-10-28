@@ -5,6 +5,9 @@ use yii;
 use yii\base\Model;
 use yii\web\UploadedFile;
 
+use bl\slider\common\helpers\File;
+use bl\slider\common\helpers\base\Directory;
+
 /**
  * Model class for uploading image
  *
@@ -29,22 +32,24 @@ class UploadImage extends Model
     /**
      * Method for uploading the image to the server
      *
-     * @param string $imagesDir path to image directory
+     * @param string $imagesRoot path to image directory
      * @param $filePrefix prefix for image files
      * @return bool|string returns path to image if the file is saved successfully
      */
-    public function upload($imagesDir, $filePrefix)
+    public function upload($imagesRoot, $filePrefix)
     {
         if($this->validate()) {
-            $path = sprintf("%s/%s-%s.%s",
-                $imagesDir,
-                $filePrefix,
-                Yii::$app->security->generateRandomString(),
-                $this->imageFile->extension
+            $imagesRoot = Yii::getAlias($imagesRoot);
+
+            Directory::create($imagesRoot, true);
+
+            $fileName = File::getCrc32RandomName(
+                $this->imageFile->baseName, $this->imageFile->extension, $filePrefix
             );
+            $path = File::getPathToFile($imagesRoot, $fileName);
 
             if($this->imageFile->saveAs($path)) {
-                return $path;
+                return $fileName;
             }
         }
 

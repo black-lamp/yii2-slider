@@ -34,7 +34,7 @@ class ContentController extends Controller
                 $module = $this->module;
 
                 $slider_content->content = $upload_image->upload(
-                    $module->imagesDir,
+                    $module->imagesRoot,
                     $module->imagePrefix
                 );
             }

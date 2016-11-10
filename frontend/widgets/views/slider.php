@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 
+use bl\slider\frontend\widgets\SliderWidget;
 use bl\slider\frontend\assets\SlickAsset;
 use bl\slider\common\entities\Slider;
 
@@ -9,8 +10,7 @@ use bl\slider\common\entities\Slider;
  *
  * @var yii\web\View $this
  * @var Slider $slider
- * @var string $imageHeight
- * @var boolean $imageCrop
+ * @var string $imagePattern
  * @var array $slickSliderOptions
  */
 
@@ -26,17 +26,7 @@ $this->registerJs("$('#$slider->key').slick($slickSliderOptions);");
         <?php foreach ($slider->sliderContent as $slide): ?>
             <div class="slide">
                 <?php if($slide->is_image): ?>
-                    <?php
-                        $style  = "width: 100%; height: $imageHeight;";
-                        $style .= "background-image: url('$slide->content');";
-                        $style .= "background-position: $slide->params;";
-                        $style .= 'background-repeat: no-repeat;';
-
-                        $bgSize = ($imageCrop) ? 'cover' : 'contain';
-                        $style .= "background-size: $bgSize;";
-
-                        echo Html::tag('div', '' , ['style' => $style]);
-                    ?>
+                    <?= SliderWidget::getImageByPattern($slide->content, $slide->params, $imagePattern) ?>
                 <?php else: ?>
                     <?= $slide->content ?>
                 <?php endif; ?>

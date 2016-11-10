@@ -51,6 +51,5 @@ Using
 |Option|Type|Default|Description|
 |---|---|---|---|
 |sliderKey|string|-|Unique slider key|
-|imageHeight|string|400px|CSS property for block with image|
-|imageCrop|boolean|false|If set `true` to block with image will be appended CSS property `background-size: cover`. If set `false` - `background-size: contain`|
+|imagePattern|string|\<div style="background: url({url}) {params} no-repeat; background-size: cover; height: 400px;">\</div>|Pattern for image|
 |slickSliderOptions|array|['slidesToShow' => '3', 'slidesToScroll' => '1', 'autoplay' => 'true', 'autoplaySpeed' =>  '2000']|Slider plugin configuration array.For more information read official [Slick slider](http://kenwheeler.github.io/slick/) documentation.|

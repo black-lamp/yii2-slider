@@ -68,10 +68,7 @@ $this->params['breadcrumbs'][] = SliderModule::t('backend.breadcrumbs', 'Add con
                             ) ?>
                 </div>
                 <?= $form->field($slider_content, 'params')
-                        ->input('text')
-                        ->label(
-                            SliderModule::t('backend.content', 'CSS option "background-position"')
-                        ) ?>
+                        ->input('text') ?>
                 <?= Html::submitButton(
                     SliderModule::t('backend.button', 'Add'),
                     [ 'class' => 'btn btn-success pull-right' ]

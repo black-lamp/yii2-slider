@@ -11,8 +11,6 @@ use bl\slider\common\entities\Slider;
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  *
  * @property string $sliderKey
- * @property string $imageHeight
- * @property boolean $imageCrop
  * @property array $slickSliderOptions
  */
 class SliderWidget extends Widget
@@ -21,15 +19,13 @@ class SliderWidget extends Widget
      * @var string Slider key
      */
     public $sliderKey;
+
     /**
-     * @var string Height of block with image
+     * @var string Pattern for image
      */
-    public $imageHeight = '400px';
-    /**
-     * @var boolean if set `true` to block with image will be appended
-     * CSS property `background-size: cover`. If set `false` - `background-size: contain`
-     */
-    public $imageCrop = false;
+    public $imagePattern =
+    '<div style="background: url({url}) {params} no-repeat; background-size: cover; height: 400px;"></div>';
+
     /**
      * @var array Configuration options for Slick slider
      * @see http://kenwheeler.github.io/slick/ for more information
@@ -40,6 +36,7 @@ class SliderWidget extends Widget
         'autoplay' => true,
         'autoplaySpeed' =>  2000
     ];
+
     /**
      * @var Slider
      */
@@ -58,9 +55,16 @@ class SliderWidget extends Widget
         return $this->render('slider', [
             'slider' => $this->_slider,
 
-            'imageHeight' => $this->imageHeight,
-            'imageCrop' => $this->imageCrop,
-            'slickSliderOptions' => json_encode($this->slickSliderOptions)
+            'slickSliderOptions' => json_encode($this->slickSliderOptions),
+            'imagePattern' => $this->imagePattern
+        ]);
+    }
+
+    public static function getImageByPattern($url, $params, $imagePattern)
+    {
+        return strtr($imagePattern, [
+            '{url}' => $url,
+            '{params}' => $params
         ]);
     }
 }

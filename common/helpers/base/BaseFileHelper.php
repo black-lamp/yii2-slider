@@ -1,6 +1,8 @@
 <?php
 namespace bl\slider\common\helpers\base;
 
+use bl\slider\common\helpers\Directory;
+
 /**
  * BaseFileHelper provides concrete implementation for [[File]].
  *
@@ -8,7 +10,7 @@ namespace bl\slider\common\helpers\base;
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-class BaseFileHelper
+class BaseFileHelper extends \yii\helpers\BaseFileHelper
 {
     /**
      * Build file name
@@ -55,6 +57,22 @@ class BaseFileHelper
      */
     public static function getPathToFile($rootPath, $fileName)
     {
-        return sprintf("%s/%s", $rootPath, $fileName);
+        $path = self::normalizePath(sprintf("%s/%s", $rootPath, $fileName));
+        return $path;
+    }
+
+    /**
+     * Method for transformation file path to URL
+     * 
+     * @param string $path
+     * @param string $separator
+     * @return string
+     */
+    public static function getUrlToFile($path, $separator)
+    {
+        $index = strpos($path, $separator);
+        $url = substr($path, $index + strlen($separator));
+
+        return self::normalizePath($url, "/");
     }
 }

@@ -1,5 +1,5 @@
 <?php
-use     yii\helpers\Html;
+use yii\helpers\Html;
 
 use bl\slider\frontend\assets\SlickAsset;
 use bl\slider\common\entities\Slider;
@@ -15,20 +15,7 @@ use bl\slider\common\entities\Slider;
  */
 
 SlickAsset::register($this);
-
-$slickConfig = '{';
-foreach ($slickSliderOptions as $name => $value) {
-    $slickConfig .= sprintf("%s: '%s',", $name, $value);
-}
-
-$slickConfig = substr($slickConfig, 0, -1);
-$slickConfig .= '}';
-
-$slickInit = <<<JS
-    $('#$slider->key').slick($slickConfig);
-JS;
-
-$this->registerJs($slickInit);
+$this->registerJs("$('#$slider->key').slick($slickSliderOptions);");
 ?>
 
 <?php if(!empty($slider)): ?>
@@ -41,7 +28,7 @@ $this->registerJs($slickInit);
                 <?php if($slide->is_image): ?>
                     <?php
                         $style  = "width: 100%; height: $imageHeight;";
-                        $style .= "background-image: url('/$slide->content');";
+                        $style .= "background-image: url('$slide->content');";
                         $style .= "background-position: $slide->params;";
                         $style .= 'background-repeat: no-repeat;';
 

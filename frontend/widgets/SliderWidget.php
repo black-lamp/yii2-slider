@@ -35,10 +35,10 @@ class SliderWidget extends Widget
      * @see http://kenwheeler.github.io/slick/ for more information
      */
     public $slickSliderOptions = [
-        'slidesToShow' => '3',
-        'slidesToScroll' => '1',
-        'autoplay' => 'true',
-        'autoplaySpeed' =>  '2000'
+        'slidesToShow' => 3,
+        'slidesToScroll' => 1,
+        'autoplay' => true,
+        'autoplaySpeed' =>  2000
     ];
     /**
      * @var Slider
@@ -60,7 +60,7 @@ class SliderWidget extends Widget
 
             'imageHeight' => $this->imageHeight,
             'imageCrop' => $this->imageCrop,
-            'slickSliderOptions' => $this->slickSliderOptions
+            'slickSliderOptions' => json_encode($this->slickSliderOptions)
         ]);
     }
 }

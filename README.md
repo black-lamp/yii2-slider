@@ -20,7 +20,7 @@ or add
 to the require section of your composer.json.
 #### Applying migrations
 ```
-yii migrate --migrationPath=@vendor/black-lamp/yii2-slider/migrations
+yii migrate --migrationPath=@vendor/black-lamp/yii2-slider/common/migrations
 ```
 #### Add module to application config
 ```php

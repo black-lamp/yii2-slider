@@ -10,6 +10,8 @@ use yii\db\ActiveRecord;
  *
  * @property integer $id
  * @property string $key
+ * @property string $entity_id
+ * @property string $entity_name
  *
  * @property SliderContent[] $sliderContent
  */

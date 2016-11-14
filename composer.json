@@ -1,7 +1,7 @@
 {
     "name": "black-lamp/yii2-slider",
-    "description": "",
-    "keywords": ["yii2", "module", "widget", "slick", "slider"],
+    "description": "Module for adding sliders to site across dashboard",
+    "keywords": ["yii2", "module", "slick", "slider", "carousel"],
     "type": "yii2-extension",
     "license": "GNU Public License",
     "support": {

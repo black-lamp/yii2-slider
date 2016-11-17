@@ -33,10 +33,10 @@ yii migrate --migrationPath=@vendor/black-lamp/yii2-slider/common/migrations
 ```
 #### Module configuration properties
 
-|Option|Type|Default|Description|
+| Option | Description | Type | Default |
 |---|---|---|---|
-|imagesDir|string|@frontend/web/img/slider|Path to images catalog in web folder (need for uploading images to the server across dashboard)|
-|imagePrefix|string|slider|Prefix for uploaded images (need for uploading images to the server across dashboard)|
+|imagesDir|Path to images catalog in web folder (need for uploading images to the server across dashboard)|string|@frontend/web/img/slider|
+|imagePrefix|Prefix for uploaded images (need for uploading images to the server across dashboard)|string|slider|
 
 Using
 -----
@@ -48,11 +48,11 @@ Using
 ```
 #### Widget configuration properties
 
-|Option|Type|Default|Description|
+| Option | Description | Type | Default |
 |---|---|---|---|
-|sliderKey|string|-|Unique slider key|
-|imagePattern|string|\<div style="background: url({url}) {params} no-repeat; background-size: cover; height: 400px;">\</div>|Pattern for image|
-|slickSliderOptions|array|['slidesToShow' => '3', 'slidesToScroll' => '1', 'autoplay' => 'true', 'autoplaySpeed' =>  '2000']|Slider plugin configuration array.For more information read official [Slick slider](http://kenwheeler.github.io/slick/) documentation.|
+|sliderKey|Unique slider key|string|-|
+|imagePattern|Pattern for image|string|\<div style="background: url({url}) {params} no-repeat; background-size: cover; height: 400px;">\</div>|
+|slickSliderOptions|Slider plugin configuration array.For more information read official [Slick slider](http://kenwheeler.github.io/slick/) documentation.|array|['slidesToShow' => '3', 'slidesToScroll' => '1', 'autoplay' => 'true', 'autoplaySpeed' =>  '2000']|
 
 Also you can append this slider to your Active Record model
 -----------------------------------------------------------

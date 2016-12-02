@@ -33,8 +33,7 @@ $this->params['breadcrumbs'][] = SliderModule::t('backend.breadcrumbs', 'Edit sl
                     'enableClientValidation' => false
                 ])
             ?>
-                <?= $form->field($slider, 'key')
-                        ->input('text') ?>
+                <?= $form->field($slider, 'key') ?>
                 <?= Html::submitButton(
                     SliderModule::t('backend.button', 'Save'),
                     [ 'class' => 'btn btn-success pull-right' ]

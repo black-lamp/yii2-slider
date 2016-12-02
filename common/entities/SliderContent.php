@@ -14,6 +14,7 @@ use yii\db\ActiveRecord;
  * @property string $params
  * @property integer $position
  * @property integer $is_image
+ * @property string $alt
  *
  * @property Slider $slider
  */
@@ -35,8 +36,9 @@ class SliderContent extends ActiveRecord
         return [
             [['slider_id', 'content', 'position'], 'required'],
             [['slider_id', 'position', 'is_image'], 'integer'],
-            [['content'], 'string'],
+            [['content', 'alt'], 'string'],
             [['params'], 'string', 'max' => 255],
+            [['alt'], 'string', 'max' => 255],
             [
                 ['slider_id'], 'exist',
                 'skipOnError' => true,

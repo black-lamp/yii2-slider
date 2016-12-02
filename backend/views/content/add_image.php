@@ -56,7 +56,6 @@ $this->params['breadcrumbs'][] = SliderModule::t('backend.breadcrumbs', 'Add con
                             'min' => 1
                         ]) ?>
                 <?= $form->field($slider_content, 'content')
-                        ->input('text')
                         ->label(
                             SliderModule::t('backend.content', 'Path to image file...')
                         ) ?>
@@ -67,8 +66,8 @@ $this->params['breadcrumbs'][] = SliderModule::t('backend.breadcrumbs', 'Add con
                                 SliderModule::t('backend.content', 'or upload new file')
                             ) ?>
                 </div>
-                <?= $form->field($slider_content, 'params')
-                        ->input('text') ?>
+                <?= $form->field($slider_content, 'alt') ?>
+                <?= $form->field($slider_content, 'params') ?>
                 <?= Html::submitButton(
                     SliderModule::t('backend.button', 'Add'),
                     [ 'class' => 'btn btn-success pull-right' ]

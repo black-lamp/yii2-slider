@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = SliderModule::t('backend.breadcrumbs', 'Create 
                 /** @var ActiveForm $form */
                 $form = ActiveForm::begin()
             ?>
-                <?= $form->field($slider, 'key')->input('text') ?>
+                <?= $form->field($slider, 'key') ?>
                 <?= Html::submitButton(SliderModule::t('backend.buttoon', 'Create'), [
                     'class' => 'btn btn-success pull-right'
                 ]) ?>

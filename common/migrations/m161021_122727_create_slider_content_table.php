@@ -2,10 +2,15 @@
 use yii\db\Migration;
 
 /**
+ * Handles the creation of table `slider_content`
+ *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class m161021_122727_create_slider_content_table extends Migration
 {
+    /**
+     * @inheritdoc
+     */
     public function up()
     {
         $this->createTable('slider_content', [
@@ -23,6 +28,9 @@ class m161021_122727_create_slider_content_table extends Migration
             'slider', 'id', 'CASCADE', 'CASCADE');
     }
 
+    /**
+     * @inheritdoc
+     */
     public function down()
     {
         $this->dropIndex('slider_content-slider_id-IDX', 'slider_content');

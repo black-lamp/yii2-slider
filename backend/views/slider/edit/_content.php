@@ -51,16 +51,17 @@ use bl\slider\backend\SliderModule;
                     ])
                 ?>
                     <?= $form->field($slide, 'position')
-                        ->input('text') ?>
-
+                            ->input('number', [
+                                'min' => 1
+                            ]) ?>
                     <div class="form-group">
                         <?php if($slide->is_image): ?>
+                            <?= $form->field($slide, 'alt') ?>
                             <?= $form->field($slide, 'params')
-                                ->input('text')
                                 ->label(
-                                    SliderModule::t('backend.edit', 'CSS option "background-position"')
+                                    SliderModule::t('backend.edit', 'Params')
                                 ) ?>
-                            <?= Html::img('/'.$slide->content, [
+                            <?= Html::img($slide->content, [
                                 'class' => 'img-thumbnail',
                                 'style' => 'width: 100%;'
                             ]) ?>
@@ -72,9 +73,7 @@ use bl\slider\backend\SliderModule;
                                         'style' => 'width: 100%; min-height: 400px;'
                                     ]
                                 ])
-                                ->label(
-                                    SliderModule::t('backend.edit', 'HTML content')
-                        ) ?>
+                                ->label(SliderModule::t('backend.edit', 'HTML content')) ?>
                         <?php endif; ?>
                     </div>
                     <?= Html::submitButton(

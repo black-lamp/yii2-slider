@@ -48,9 +48,10 @@ $this->params['breadcrumbs'][] = SliderModule::t('backend.breadcrumbs', 'Add con
                 <?= $form->field($slider_content, 'slider_id')
                         ->hiddenInput(['value' => $slider_id])
                         ->label(false) ?>
-                <?= $form->field($slider_content, 'position')->input('number', [
-                    'min' => 1
-                ]) ?>
+                <?= $form->field($slider_content, 'position')
+                        ->input('number', [
+                            'min' => 1
+                        ]) ?>
                 <?= $form->field($slider_content, 'content')->widget(AceWidget::className(), [
                     'enableEmmet' => true,
                     'attributes' => [

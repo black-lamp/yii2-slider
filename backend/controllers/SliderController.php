@@ -1,23 +1,40 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-slider
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 namespace bl\slider\backend\controllers;
 
-use yii;
+use Yii;
 use yii\helpers\Url;
 use yii\web\Controller;
 
 use bl\slider\common\entities\Slider;
 
 /**
+ * SliderController for SliderModule
+ *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class SliderController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
     public $defaultAction = "list";
 
+
+    /**
+     * Render list of sliders
+     *
+     * @return string
+     */
     public function actionList()
     {
         $sliders = Slider::find()
-            ->with('sliderContent')
+            ->withSlides()
             ->all();
 
         return $this->render('list', [
@@ -25,6 +42,11 @@ class SliderController extends Controller
         ]);
     }
 
+    /**
+     * Crate a slider
+     *
+     * @return string|\yii\web\Response
+     */
     public function actionCreate()
     {
         $slider = new Slider();
@@ -32,10 +54,8 @@ class SliderController extends Controller
         if(Yii::$app->request->isPost) {
             $slider->load(Yii::$app->request->post());
 
-            if($slider->validate() && $slider->save()) {
-                return $this->redirect(
-                    Url::toRoute('/slider')
-                );
+            if($slider->insert()) {
+                return $this->redirect(Url::toRoute('/slider'));
             }
         }
 
@@ -44,19 +64,22 @@ class SliderController extends Controller
         ]);
     }
 
+    /**
+     * Edit the slider
+     *
+     * @param integer $sliderId
+     * @return string
+     */
     public function actionEdit($sliderId)
     {
         $slider = Slider::find()
             ->where(['id' => $sliderId])
-            ->with(['sliderContent' => function($query) {
-                /** @var yii\db\ActiveQuery $query */
-                $query->orderBy(['position' => SORT_ASC]);
-            }])
+            ->withSlides(['position' => SORT_ASC])
             ->one();
 
         if(Yii::$app->request->isPost) {
             $slider->load(Yii::$app->request->post());
-            $slider->save(false);
+            $slider->update(false);
         }
 
         return $this->render('edit/edit', [
@@ -64,13 +87,18 @@ class SliderController extends Controller
         ]);
     }
 
+    /**
+     * Delete the slider
+     *
+     * @param integer $sliderId
+     * @return \yii\web\Response
+     */
     public function actionDelete($sliderId)
     {
-        $slider = Slider::findOne($sliderId);
-        $slider->delete();
+        if ($slider = Slider::findOne($sliderId)) {
+            $slider->delete();
+        }
 
-        return $this->redirect(
-            Yii::$app->request->referrer
-        );
+        return $this->redirect(Yii::$app->request->referrer);
     }
 }

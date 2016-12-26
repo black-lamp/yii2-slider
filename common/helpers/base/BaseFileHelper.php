@@ -1,12 +1,16 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-slider
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 namespace bl\slider\common\helpers\base;
 
-use bl\slider\common\helpers\Directory;
-
 /**
- * BaseFileHelper provides concrete implementation for [[File]].
+ * `BaseFileHelper` provides concrete implementation for `File`.
  *
- * Do not use BaseFileHelper. Use [[File]] instead.
+ * Do not use `BaseFileHelper`. Use `File` instead.
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */

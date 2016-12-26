@@ -1,12 +1,17 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-slider
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 namespace bl\slider\common\entities;
 
+use Yii;
 use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "slider".
- *
- * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  *
  * @property integer $id
  * @property string $key
@@ -14,6 +19,8 @@ use yii\db\ActiveRecord;
  * @property string $entity_name
  *
  * @property SliderContent[] $sliderContent
+ *
+ * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class Slider extends ActiveRecord
 {
@@ -42,9 +49,18 @@ class Slider extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'key' => 'Key',
+            'id' => Yii::t('slider.entity', 'ID'),
+            'key' => Yii::t('slider.entity', 'Key')
         ];
+    }
+
+    /**
+     * @inheritdoc
+     * @return SliderActiveQuery
+     */
+    public static function find()
+    {
+        return Yii::createObject(SliderActiveQuery::className(), [get_called_class()]);
     }
 
     /**

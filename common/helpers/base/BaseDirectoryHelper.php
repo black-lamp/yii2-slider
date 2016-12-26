@@ -1,10 +1,16 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-slider
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 namespace bl\slider\common\helpers\base;
 
 /**
- * BaseDirectoryHelper provides concrete implementation for [[Directory]].
+ * `BaseDirectoryHelper` provides concrete implementation for `Directory`.
  *
- * Do not use BaseDirectoryHelper. Use [[Directory]] instead.
+ * Do not use `BaseDirectoryHelper`. Use `Directory` instead.
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */

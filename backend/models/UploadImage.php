@@ -1,7 +1,13 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-slider
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 namespace bl\slider\backend\models;
 
-use yii;
+use Yii;
 use yii\base\Model;
 use yii\web\UploadedFile;
 
@@ -11,9 +17,9 @@ use bl\slider\common\helpers\Directory;
 /**
  * Model class for uploading image
  *
- * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
- *
  * @property UploadedFile $imageFile
+ *
+ * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class UploadImage extends Model
 {
@@ -22,6 +28,32 @@ class UploadImage extends Model
      */
     public $imageFile;
 
+    /**
+     * @var string
+     */
+    protected $_imagesRoot;
+    /**
+     * @var string
+     */
+    protected $_imagePrefix;
+
+
+    /**
+     * @param string $imagesRoot
+     * @param string $imagePrefix
+     * @inheritdoc
+     */
+    public function __construct($imagesRoot, $imagePrefix, array $config = [])
+    {
+        $this->_imagesRoot = Yii::getAlias($imagesRoot);
+        $this->_imagePrefix = $imagePrefix;
+
+        parent::__construct($config);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -32,18 +64,16 @@ class UploadImage extends Model
     /**
      * Method for generating unique image name
      *
-     * @param string $path
-     * @param string $filePrefix
      * @return string
      */
-    protected function getImageName($path, $filePrefix)
+    protected function getImageName()
     {
         $fileName = File::getCrc32RandomName(
-            $this->imageFile->baseName, $this->imageFile->extension, $filePrefix
+            $this->imageFile->baseName, $this->imageFile->extension, $this->_imagePrefix
         );
 
-        if(Directory::isExists($path . '/' . $fileName)) {
-            $this->getImageName($path, $filePrefix);
+        if(Directory::isExists($this->_imagesRoot . '/' . $fileName)) {
+            $this->getImageName();
         }
 
         return $fileName;
@@ -52,19 +82,15 @@ class UploadImage extends Model
     /**
      * Method for uploading the image to the server
      *
-     * @param string $imagesRoot path to image directory
-     * @param $filePrefix prefix for image files
      * @return bool|string returns path to image if the file is saved successfully
      */
-    public function upload($imagesRoot, $filePrefix)
+    public function upload()
     {
         if($this->validate()) {
-            $imagesRoot = Yii::getAlias($imagesRoot);
+            Directory::create($this->_imagesRoot, true);
 
-            Directory::create($imagesRoot, true);
-
-            $fileName = $this->getImageName($imagesRoot, $filePrefix);
-            $path = File::getPathToFile($imagesRoot, $fileName);
+            $fileName = $this->getImageName();
+            $path = File::getPathToFile($this->_imagesRoot, $fileName);
 
             if($this->imageFile->saveAs($path)) {
                 return File::getUrlToFile($path, "web");

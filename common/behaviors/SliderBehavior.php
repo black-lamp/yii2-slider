@@ -1,9 +1,14 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-slider
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 namespace bl\slider\common\behaviors;
 
 use yii\base\Behavior;
 use yii\base\Exception;
-use yii\db\ActiveRecord;
 use yii\db\BaseActiveRecord;
 
 use bl\slider\common\entities\Slider;
@@ -12,13 +17,13 @@ use bl\slider\common\entities\SliderContent;
 /**
  * Slider behavior for ActiveRecord models
  *
- * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
- *
  * @property BaseActiveRecord $owner
  * @property Slider $slider
  * @property SliderContent[] $content
  * @property integer $owner_id
  * @property string $owner_name
+ *
+ * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class SliderBehavior extends Behavior
 {
@@ -26,21 +31,19 @@ class SliderBehavior extends Behavior
      * @var Slider entity
      */
     protected $slider;
-
     /**
      * @var SliderContent[] entities
      */
     protected $content;
-
     /**
      * @var integer Primary key of owner entity
      */
     protected $owner_id;
-
     /**
      * @var string Class name of owner entity
      */
     protected $owner_name;
+
 
     /**
      * @inheritdoc
@@ -145,13 +148,12 @@ class SliderBehavior extends Behavior
             $this->slider->entity_name = $this->owner_name;
         }
 
-        $transaction = ActiveRecord::getDb()->beginTransaction();
+        $transaction = Slider::getDb()->beginTransaction();
         try {
-            if($this->slider->validate() && $this->slider->save()) {
+            if($this->slider->save()) {
                 if(!empty($this->content)) {
                     foreach($this->content as $content) {
                         $content->slider_id = $this->slider->id;
-                        $content->validate();
                         $content->save();
                     }
                 }

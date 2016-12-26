@@ -1,19 +1,26 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-slider
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-use bl\slider\common\entities\SliderContent;
+use bl\slider\backend\widgets\Error;
 use bl\slider\backend\SliderModule;
 use bl\slider\backend\models\UploadImage;
 
 /**
- * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ * View file for Content controller
  *
- * @var yii\web\View $this
- * @var SliderContent $slider_content
- * @var integer $slider_id
- * @var UploadImage $upload_image
+ * @var \yii\web\View $this
+ * @var \bl\slider\backend\models\forms\AddImage $addImageForm
+ * @var UploadImage $uploadImage
  * @var array $errors
+ *
+ * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 
 \yii\bootstrap\BootstrapAsset::register($this);
@@ -24,7 +31,7 @@ $this->params['breadcrumbs'][] = [
 ];
 $this->params['breadcrumbs'][] = [
     'label' => SliderModule::t('backend.breadcrumbs', 'Edit slider'),
-    'url' => ['slider/edit', 'sliderId' => $slider_id]
+    'url' => ['slider/edit', 'sliderId' => $addImageForm->sliderId]
 ];
 $this->params['breadcrumbs'][] = SliderModule::t('backend.breadcrumbs', 'Add content');
 ?>
@@ -35,39 +42,26 @@ $this->params['breadcrumbs'][] = SliderModule::t('backend.breadcrumbs', 'Add con
     </h1>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <?php if(!empty($errors)) {
-                echo $this->render('_errors', [
-                    'errors' => $errors
-                ]);
-            } ?>
-
-            <?php
-            /** @var ActiveForm $form */
-            $form = ActiveForm::begin([
-                'enableClientValidation' => false,
-                'options' => ['enctype' => 'multipart/form-data']
-            ])
-            ?>
-                <?= $form->field($slider_content, 'slider_id')
-                    ->hiddenInput(['value' => $slider_id])
-                    ->label(false) ?>
-                <?= $form->field($slider_content, 'position')
+            <?php if (!empty($errors)): ?>
+                <?= Error::widget(['errors' => $errors]) ?>
+            <?php endif; ?>
+            <?php $form = ActiveForm::begin([
+                'options' => ['enctype' => 'multipart/form-data'],
+                'enableClientValidation' => false
+            ]) ?>
+                <?= $form->field($addImageForm, 'position')
                         ->input('number', [
                             'min' => 1
                         ]) ?>
-                <?= $form->field($slider_content, 'content')
-                        ->label(
-                            SliderModule::t('backend.content', 'Path to image file...')
-                        ) ?>
+                <?= $form->field($addImageForm, 'content')
+                        ->label(SliderModule::t('backend.content', 'Path to image file...')) ?>
                 <div class="form-group">
-                    <?= $form->field($upload_image, 'imageFile')
+                    <?= $form->field($uploadImage, 'imageFile')
                             ->fileInput()
-                            ->label(
-                                SliderModule::t('backend.content', 'or upload new file')
-                            ) ?>
+                            ->label(SliderModule::t('backend.content', 'or upload new file')) ?>
                 </div>
-                <?= $form->field($slider_content, 'alt') ?>
-                <?= $form->field($slider_content, 'params') ?>
+                <?= $form->field($addImageForm, 'alt') ?>
+                <?= $form->field($addImageForm, 'params') ?>
                 <?= Html::submitButton(
                     SliderModule::t('backend.button', 'Add'),
                     [ 'class' => 'btn btn-success pull-right' ]

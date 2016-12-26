@@ -1,24 +1,30 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-slider
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 use yii\helpers\Html;
 
 use bl\slider\frontend\widgets\SliderWidget;
-use bl\slider\frontend\assets\SlickAsset;
-use bl\slider\common\entities\Slider;
 
 /**
- * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ * View file for Slider widget
  *
- * @var yii\web\View $this
- * @var Slider $slider
+ * @var \yii\web\View $this
+ * @var \bl\slider\common\entities\Slider $slider
  * @var string $imagePattern
  * @var array $slickSliderOptions
+ *
+ * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 
-SlickAsset::register($this);
-$this->registerJs("$('#$slider->key').slick($slickSliderOptions);");
+\bl\slider\frontend\assets\SlickAsset::register($this);
 ?>
 
 <?php if(!empty($slider)): ?>
+    <?php $this->registerJs("$('#$slider->key').slick($slickSliderOptions);") ?>
     <?= Html::beginTag('div', [
         'id' => $slider->key,
         'class' => 'slider'

@@ -1,4 +1,10 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-slider
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 namespace bl\slider\frontend\widgets;
 
 use yii\base\Widget;
@@ -6,28 +12,26 @@ use yii\base\Widget;
 use bl\slider\common\entities\Slider;
 
 /**
- * Widget for rendering the slider in frontend
- *
- * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ * Widget for rendering the slider
  *
  * @property string $sliderKey
  * @property array $slickSliderOptions
+ *
+ * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class SliderWidget extends Widget
 {
     /**
-     * @var string Slider key
+     * @var string slider key
      */
     public $sliderKey;
-
     /**
-     * @var string Pattern for image
+     * @var string pattern for image
      */
     public $imagePattern =
     '<div style="background: url({url}) {params} no-repeat; background-size: cover; height: 400px;"></div>';
-
     /**
-     * @var array Configuration options for Slick slider
+     * @var array configuration options for Slick slider
      * @see http://kenwheeler.github.io/slick/ for more information
      */
     public $slickSliderOptions = [
@@ -42,14 +46,21 @@ class SliderWidget extends Widget
      */
     protected $_slider;
 
+
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         $this->_slider = Slider::find()
-            ->where(['key' => $this->sliderKey])
-            ->with('sliderContent')
+            ->key($this->sliderKey)
+            ->withSlides()
             ->one();
     }
 
+    /**
+     * @inheritdoc
+     */
     public function run()
     {
         return $this->render('slider', [
@@ -60,6 +71,14 @@ class SliderWidget extends Widget
         ]);
     }
 
+    /**
+     * Method for getting image by pattern
+     *
+     * @param string $url
+     * @param string $params
+     * @param string $imagePattern
+     * @return string
+     */
     public static function getImageByPattern($url, $params, $imagePattern)
     {
         return strtr($imagePattern, [

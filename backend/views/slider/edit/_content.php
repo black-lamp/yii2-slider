@@ -1,4 +1,10 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-slider
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -8,9 +14,11 @@ use bl\slider\common\entities\SliderContent;
 use bl\slider\backend\SliderModule;
 
 /**
- * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ * View file for Slider controller
  *
  * @var SliderContent[] $content
+ *
+ * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 
 \yii\bootstrap\BootstrapAsset::register($this);

@@ -1,106 +1,124 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-slider
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 namespace bl\slider\backend\controllers;
 
-use yii;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\web\UploadedFile;
 
 use bl\slider\backend\SliderModule;
-use bl\slider\backend\models\UploadImage;
 use bl\slider\common\entities\SliderContent;
+use bl\slider\backend\models\forms\AddHtml;
+use bl\slider\backend\models\forms\AddImage;
+use bl\slider\backend\models\forms\BaseContentForm;
 
 /**
+ * ContentController for SliderModule
+ *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class ContentController extends Controller
 {
+    /**
+     * @var SliderModule
+     */
+    public $module;
+
+
+    /**
+     * Render form for adding slider content
+     *
+     * @param AddHtml|AddImage $form
+     * @param string $view
+     * @param array $params
+     * @return \yii\web\Response|string
+     */
+    public function renderForm($form, $view, $params = [])
+    {
+        if (Yii::$app->request->isPost) {
+            $form->load(Yii::$app->request->post());
+            if ($form->save()) {
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+
+            $params['errors'] = $form->getErrors();
+        }
+
+        return $this->render($view, $params);
+    }
+
+    /**
+     * Add image to slider
+     *
+     * @param integer $sliderId
+     * @return string|\yii\web\Response
+     */
     public function actionAddImage($sliderId)
     {
-        $slider_content = new SliderContent();
-        $upload_image = new UploadImage();
+        /** @var AddImage $addImageForm */
+        $addImageForm = Yii::$container->get('AddImageModel');
+        $addImageForm->sliderId = $sliderId;
 
-        $viewParams = [
-            'slider_content' => $slider_content,
-            'upload_image' => $upload_image,
-            'slider_id' => $sliderId
-        ];
-
-        if(Yii::$app->request->isPost) {
-            $slider_content->load(Yii::$app->request->post());
-
-            if($upload_image->imageFile = UploadedFile::getInstance($upload_image, 'imageFile')) {
-                /** @var SliderModule $module */
-                $module = $this->module;
-
-                $slider_content->content = $upload_image->upload(
-                    $module->imagesRoot,
-                    $module->imagePrefix
-                );
-            }
-
-            if($slider_content->validate() && $slider_content->save()) {
-                return $this->redirect(
-                    Yii::$app->request->referrer
-                );
-            }
-            else {
-                $viewParams['errors'] = $slider_content->errors;
-            }
-        }
-
-        return $this->render('add_image', $viewParams);
+        return $this->renderForm($addImageForm, 'add_image', [
+            'addImageForm' => $addImageForm,
+            'uploadImage' => Yii::$container->get('UploadImageModel')
+        ]);
     }
 
+    /**
+     * Add HTML content to slider
+     *
+     * @param integer $sliderId
+     * @return string|\yii\web\Response
+     */
     public function actionAddHtml($sliderId)
     {
-        $slider_content = new SliderContent();
+        $form = new AddHtml();
+        $form->sliderId = $sliderId;
 
-        $viewParams = [
-            'slider_content' => $slider_content,
-            'slider_id' => $sliderId
-        ];
-
-        if(Yii::$app->request->isPost) {
-            $slider_content->load(Yii::$app->request->post());
-            $slider_content->is_image = 0;
-
-            if($slider_content->validate() && $slider_content->save()) {
-                return $this->redirect(
-                    Yii::$app->request->referrer
-                );
-            }
-            else {
-                $viewParams['errors'] = $slider_content->errors;
-            }
-        }
-
-        return $this->render('add_html', $viewParams);
+        return $this->renderForm($form, 'add_html', [
+            'model' => $form
+        ]);
     }
 
+    /**
+     *  Edit the slider content
+     *
+     * @param integer $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
     public function actionEdit($id)
     {
         if(Yii::$app->request->isPost) {
-            $sliderContent = SliderContent::findOne($id);
-            $sliderContent->load(Yii::$app->request->post());
-
-            if($sliderContent->validate() && $sliderContent->save()) {
-                return $this->redirect(
-                    Yii::$app->request->referrer
-                );
+            if ($sliderContent = SliderContent::findOne($id)) {
+                $sliderContent->load(Yii::$app->request->post());
+                $sliderContent->update();
             }
+
+            return $this->redirect(Yii::$app->request->referrer);
         }
 
         throw new NotFoundHttpException("Page not found!");
     }
 
+    /**
+     * Delete the slider content
+     *
+     * @param integer $id
+     * @return \yii\web\Response
+     */
     public function actionDelete($id)
     {
-        $sliderContent = SliderContent::findOne($id);
-        $sliderContent->delete();
+        if ($sliderContent = SliderContent::findOne($id)) {
+            $sliderContent->delete();
+        }
 
-        return $this->redirect(
-            Yii::$app->request->referrer
-        );
+        return $this->redirect(Yii::$app->request->referrer);
     }
 }

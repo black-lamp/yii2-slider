@@ -3,7 +3,12 @@ black-lamp/yii2-slider commits history
 
 ## [Under development]
 
+### Changed
 - Changed license
+- Refactored code
+
+### Fixed
+- (#3)Fixed translations
 
 ## [1.2.0] - 2016-12-15
 

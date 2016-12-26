@@ -3,6 +3,7 @@ Slider module for Yii2
 Module for adding the image slider to site across dashboard and append it to view with widget help.
 This extension uses [Slick slider](http://kenwheeler.github.io/slick/).
 
+[![Build Status](https://travis-ci.org/black-lamp/yii2-slider.svg?branch=master)](https://travis-ci.org/black-lamp/yii2-slider)
 [![Latest Stable Version](https://poser.pugx.org/black-lamp/yii2-slider/v/stable)](https://packagist.org/packages/black-lamp/yii2-slider)
 [![Latest Unstable Version](https://poser.pugx.org/black-lamp/yii2-slider/v/unstable)](https://packagist.org/packages/black-lamp/yii2-slider)
 [![License](https://poser.pugx.org/black-lamp/yii2-slider/license)](https://packagist.org/packages/black-lamp/yii2-slider)

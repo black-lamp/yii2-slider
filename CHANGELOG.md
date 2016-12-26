@@ -1,6 +1,10 @@
 black-lamp/yii2-slider commits history
 ------------------------------------------
 
+## [Under development]
+
+- Changed license
+
 ## [1.2.0] - 2016-12-15
 
 ### Added

@@ -5,6 +5,7 @@ black-lamp/yii2-slider commits history
 
 ### Changed
 - Changed license
+- Changed project file structure
 - Refactored code
 
 ### Fixed

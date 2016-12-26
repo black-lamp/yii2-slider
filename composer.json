@@ -20,6 +20,11 @@
         "black-lamp/yii2-text-editor": "1.*.*",
         "bower-asset/slick-carousel": "1.6.0"
     },
+    "require-dev": {
+        "codeception/codeception": "*",
+        "codeception/verify": "*",
+        "codeception/specify": "*"
+    },
     "authors": [
         {
             "name": "Vladimir Kuprienko",

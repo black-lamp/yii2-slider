@@ -1,6 +1,6 @@
 {
     "name": "black-lamp/yii2-slider",
-    "description": "Module for adding sliders to site across dashboard",
+    "description": "Module for adding image slider to site across dashboard",
     "keywords": ["yii2", "module", "slick", "slider", "carousel"],
     "type": "yii2-extension",
     "license": "BSD-3-Clause",

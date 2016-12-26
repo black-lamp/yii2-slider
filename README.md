@@ -1,6 +1,6 @@
 Slider module for Yii2
 ======================
-Module for adding sliders to site across dashboard.
+Module for adding the image slider to site across dashboard and append it to view with widget help.
 This extension uses [Slick slider](http://kenwheeler.github.io/slick/).
 
 [![Latest Stable Version](https://poser.pugx.org/black-lamp/yii2-slider/v/stable)](https://packagist.org/packages/black-lamp/yii2-slider)
@@ -23,6 +23,7 @@ to the require section of your composer.json.
 yii migrate --migrationPath=@vendor/black-lamp/yii2-slider/common/migrations
 ```
 #### Add module to application config
+Module for backend
 ```php
 'modules' => [
      // ...
@@ -57,6 +58,7 @@ Using
 Also you can append this slider to your Active Record model
 -----------------------------------------------------------
 #### Configuration
+Add behavior to your Active Record model
 ```php
 use yii\db\ActiveRecord;
 

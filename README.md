@@ -35,7 +35,7 @@ yii migrate --migrationPath=@vendor/black-lamp/yii2-slider/common/migrations
 
 | Option | Description | Type | Default |
 |---|---|---|---|
-|imagesDir|Path to images catalog in web folder (need for uploading images to the server across dashboard)|string|@frontend/web/img/slider|
+|imagesRoot|Path to images catalog in web folder (need for uploading images to the server across dashboard)|string|@frontend/web/img/slider|
 |imagePrefix|Prefix for uploaded images (need for uploading images to the server across dashboard)|string|slider|
 
 Using

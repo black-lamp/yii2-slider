@@ -9,7 +9,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 use bl\slider\common\entities\Slider;
-use bl\slider\backend\SliderModule;
+use bl\slider\backend\Module as SliderModule;
 
 /**
  * View file for Slider controller

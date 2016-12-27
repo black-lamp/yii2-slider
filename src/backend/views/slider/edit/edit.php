@@ -10,7 +10,7 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 use bl\slider\common\entities\Slider;
-use bl\slider\backend\SliderModule;
+use bl\slider\backend\Module as SliderModule;
 
 /**
  * View file for Slider controller

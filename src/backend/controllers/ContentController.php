@@ -11,11 +11,9 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-use bl\slider\backend\SliderModule;
 use bl\slider\common\entities\SliderContent;
 use bl\slider\backend\models\forms\AddHtml;
 use bl\slider\backend\models\forms\AddImage;
-use bl\slider\backend\models\forms\BaseContentForm;
 
 /**
  * ContentController for SliderModule
@@ -25,7 +23,7 @@ use bl\slider\backend\models\forms\BaseContentForm;
 class ContentController extends Controller
 {
     /**
-     * @var SliderModule
+     * @var \bl\slider\backend\Module
      */
     public $module;
 

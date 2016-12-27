@@ -7,8 +7,9 @@
 
 namespace bl\slider\backend\models\forms;
 
-use bl\slider\backend\models\UploadImage;
 use yii\web\UploadedFile;
+
+use bl\slider\backend\models\UploadImage;
 
 /**
  * Model for adding image to slider

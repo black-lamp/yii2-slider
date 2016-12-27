@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 
 use bl\ace\AceWidget;
 use bl\slider\common\entities\SliderContent;
-use bl\slider\backend\SliderModule;
+use bl\slider\backend\Module as Slider;
 
 /**
  * View file for Slider controller
@@ -36,11 +36,11 @@ use bl\slider\backend\SliderModule;
                    aria-expanded="true"
                    aria-controls="collapse-<?= $number ?>">
                     <?= sprintf("%s #%d",
-                        SliderModule::t('backend.edit', 'Slide'),
+                        Slider::t('backend.edit', 'Slide'),
                         $number + 1)  ?>
                 </a>
                 <?= Html::a(
-                    SliderModule::t('backend.button', 'Delete'),
+                    Slider::t('backend.button', 'Delete'),
                     Url::toRoute([
                         '/slider/content/delete',
                         'id' => $slide->id
@@ -66,9 +66,7 @@ use bl\slider\backend\SliderModule;
                         <?php if($slide->is_image): ?>
                             <?= $form->field($slide, 'alt') ?>
                             <?= $form->field($slide, 'params')
-                                ->label(
-                                    SliderModule::t('backend.edit', 'Params')
-                                ) ?>
+                                ->label(Slider::t('backend.edit', 'Params')) ?>
                             <?= Html::img($slide->content, [
                                 'class' => 'img-thumbnail',
                                 'style' => 'width: 100%;'
@@ -81,11 +79,11 @@ use bl\slider\backend\SliderModule;
                                         'style' => 'width: 100%; min-height: 400px;'
                                     ]
                                 ])
-                                ->label(SliderModule::t('backend.edit', 'HTML content')) ?>
+                                ->label(Slider::t('backend.edit', 'HTML content')) ?>
                         <?php endif; ?>
                     </div>
                     <?= Html::submitButton(
-                        SliderModule::t('backend.button', 'Save changes'),
+                        Slider::t('backend.button', 'Save changes'),
                         [ 'class' => 'btn btn-success pull-right' ]
                     ) ?>
                 <?php $form->end() ?>

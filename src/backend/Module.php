@@ -8,7 +8,6 @@
 namespace bl\slider\backend;
 
 use Yii;
-use yii\base\Module;
 
 /**
  * Backend module definition class
@@ -18,7 +17,7 @@ use yii\base\Module;
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-class SliderModule extends Module
+class Module extends \yii\base\Module
 {
     /**
      * @inheritdoc

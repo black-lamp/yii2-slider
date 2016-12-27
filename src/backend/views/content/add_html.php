@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 use bl\ace\AceWidget;
 use bl\slider\backend\widgets\Error;
-use bl\slider\backend\SliderModule;
+use bl\slider\backend\Module as Slider;
 
 /**
  * View file for Content controller
@@ -24,19 +24,19 @@ use bl\slider\backend\SliderModule;
 \yii\bootstrap\BootstrapAsset::register($this);
 
 $this->params['breadcrumbs'][] = [
-    'label' => SliderModule::t('backend.breadcrumbs', 'Slider list'),
+    'label' => Slider::t('backend.breadcrumbs', 'Slider list'),
     'url' => ['/slider']
 ];
 $this->params['breadcrumbs'][] = [
-    'label' => SliderModule::t('backend.breadcrumbs', 'Edit slider'),
+    'label' => Slider::t('backend.breadcrumbs', 'Edit slider'),
     'url' => ['slider/edit', 'sliderId' => $model->sliderId]
 ];
-$this->params['breadcrumbs'][] = SliderModule::t('backend.breadcrumbs', 'Add content');
+$this->params['breadcrumbs'][] = Slider::t('backend.breadcrumbs', 'Add content');
 ?>
 
 <div class="container">
     <h1 class="text-center">
-        <?= SliderModule::t('backend.content', 'Add HTML content') ?>
+        <?= Slider::t('backend.content', 'Add HTML content') ?>
     </h1>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -55,9 +55,9 @@ $this->params['breadcrumbs'][] = SliderModule::t('backend.breadcrumbs', 'Add con
                     'attributes' => [
                         'style' => 'width: 100%; min-height: 400px;'
                     ]
-                ])->label(SliderModule::t('backend.content', 'HTML content')) ?>
+                ])->label(Slider::t('backend.content', 'HTML content')) ?>
                 <?= Html::submitButton(
-                    SliderModule::t('backend.button', 'Add'),
+                    Slider::t('backend.button', 'Add'),
                     [ 'class' => 'btn btn-success pull-right' ]
                 ) ?>
             <?php $form->end() ?>

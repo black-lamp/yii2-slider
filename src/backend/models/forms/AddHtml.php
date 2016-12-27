@@ -26,6 +26,10 @@ class AddHtml extends BaseContentForm
     {
         $this->_content->is_image = false;
 
+        if(!$this->validate()) {
+            return false;
+        }
+
         return parent::save();
     }
 }

@@ -16,3 +16,8 @@ modules:
         Yii2:
           cleanup: false
           configFile: 'tests/_config/app.php'
+        Db:
+          dsn: 'sqlite:tests/_output/test.db'
+          user: ''
+          password: ''
+          dump: 'tests/_data/dump.sql'

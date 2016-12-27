@@ -3,7 +3,7 @@ black-lamp/yii2-slider commits history
 
 ## [Under development]
 - Added unit tests for:
-`FileHelper`
+`FileHelper`, forms
 
 - Improved `FileHelper`
 

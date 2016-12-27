@@ -93,7 +93,7 @@ class UploadImage extends Model
             $path = File::getPathToFile($this->_imagesRoot, $fileName);
 
             if($this->imageFile->saveAs($path)) {
-                return File::getUrlToFile($path, "web");
+                return File::substrBySeparator($path, "web");
             }
         }
 

@@ -1,6 +1,10 @@
 black-lamp/yii2-slider commits history
 ------------------------------------------
 
+## [Under development]
+
+- Improved `FileHelper`
+
 ## [2.0.0] - 2016-12-27
 
 ### Added

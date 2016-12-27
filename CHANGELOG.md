@@ -1,12 +1,13 @@
 black-lamp/yii2-slider commits history
 ------------------------------------------
 
-## [Under development]
+## [2.0.0] - 2016-12-27
 
 ### Added
 - Added unit tests
 
 ### Changed
+- Changed backend module name
 - Changed license
 - Changed project file structure
 - Refactored code

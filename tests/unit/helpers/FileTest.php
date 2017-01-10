@@ -58,13 +58,4 @@ class FileTest extends TestCase
         $this->assertInternalType('string', $actualPath, 'Method should return a string');
         $this->assertEquals($expectedPath, $actualPath, 'Method should return path to file');
     }
-
-    public function testSubstrBySeparator()
-    {
-        $expectedPath = '/path/to';
-        $actualPath = File::substrBySeparator($this->path, 'test');
-
-        $this->assertInternalType('string', $actualPath, 'Method should return a string');
-        $this->assertEquals($expectedPath, $actualPath, 'Method must cut string by separator');
-    }
 }

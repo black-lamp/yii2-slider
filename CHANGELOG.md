@@ -2,6 +2,8 @@ black-lamp/yii2-slider commits history
 ------------------------------------------
 
 ## [Under development]
+- Added `urlSeparator` option to backend module
+- Added String helper
 - Added unit tests for:
 `FileHelper`, forms
 

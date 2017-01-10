@@ -7,6 +7,7 @@
 
 namespace bl\slider\backend\models\forms;
 
+use bl\slider\common\helpers\StringHelper;
 use yii\web\UploadedFile;
 
 use bl\slider\backend\models\UploadImage;
@@ -34,14 +35,19 @@ class AddImage extends BaseContentForm
      * @var UploadImage
      */
     private $_uploadedImage;
+    /**
+     * @var string
+     */
+    private $_urlSeparator;
 
 
     /**
      * @inheritdoc
      * @param UploadImage $uploadedImage
      */
-    public function __construct(UploadImage $uploadedImage, array $config = [])
+    public function __construct($urlSeparator, UploadImage $uploadedImage, array $config = [])
     {
+        $this->_urlSeparator = $urlSeparator;
         $this->_uploadedImage = $uploadedImage;
 
         parent::__construct($config);
@@ -65,7 +71,7 @@ class AddImage extends BaseContentForm
         $this->_content->alt = $this->alt;
 
         if($this->_uploadedImage->imageFile = UploadedFile::getInstance($this->_uploadedImage, 'imageFile')) {
-            $this->content = $this->_uploadedImage->upload();
+            $this->content = StringHelper::substrBySeparator($this->_uploadedImage->upload(), $this->_urlSeparator);
         }
 
         if (!$this->validate()) {

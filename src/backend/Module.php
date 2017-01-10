@@ -13,6 +13,7 @@ use Yii;
  * Backend module definition class
  *
  * @property string $imagesRoot
+ * @property string $urlSeparator
  * @property string $imagePrefix
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
@@ -31,6 +32,15 @@ class Module extends \yii\base\Module
      * @var string Path to image directory
      */
     public $imagesRoot = '@frontend/web/img/slider';
+    /**
+     * @var string separator for getting url to image from image path
+     *
+     * Example
+     * Path:        @frontend/web/img/slider/image.jpg
+     * Separator:   web
+     * Result:      /img/slider/image.jpg
+     */
+    public $urlSeparator = 'web';
     /**
      * @var string prefix for image files
      */
@@ -57,6 +67,7 @@ class Module extends \yii\base\Module
         Yii::$container->set('UploadImageModel', 'bl\slider\backend\models\UploadImage');
 
         Yii::$container->set('bl\slider\backend\models\forms\AddImage', [], [
+            $this->urlSeparator,
             'uploadedImage' => Yii::$container->get('UploadImageModel')
         ]);
         Yii::$container->set('AddImageModel', 'bl\slider\backend\models\forms\AddImage');

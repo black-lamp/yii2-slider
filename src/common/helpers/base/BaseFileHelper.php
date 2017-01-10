@@ -63,23 +63,4 @@ class BaseFileHelper extends \yii\helpers\BaseFileHelper
     {
         return static::normalizePath(sprintf("%s/%s", $rootPath, $fileName));
     }
-
-    /**
-     * Getting substring by separator
-     * ```php
-     * $path = 'some/test/path/to/file.php';
-     * File::substrBySeparator($path, 'test'); // Return 'path/to/file.php'
-     * ```
-     * 
-     * @param string $path
-     * @param string $separator
-     * @return string
-     */
-    public static function substrBySeparator($path, $separator)
-    {
-        $index = strpos($path, $separator);
-        $url = substr($path, $index + strlen($separator));
-
-        return static::normalizePath($url, "/");
-    }
 }

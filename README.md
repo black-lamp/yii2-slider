@@ -38,6 +38,7 @@ Module for backend
 | Option | Description | Type | Default |
 |---|---|---|---|
 |imagesRoot|Path to images catalog in web folder (need for uploading images to the server across dashboard)|string|@frontend/web/img/slider|
+|urlSeparator|Separator for getting url to image from image path|string|web|
 |imagePrefix|Prefix for uploaded images (need for uploading images to the server across dashboard)|string|slider|
 
 Using

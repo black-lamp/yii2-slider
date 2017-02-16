@@ -21,7 +21,7 @@ or add
 to the require section of your composer.json.
 #### Applying migrations
 ```
-yii migrate --migrationPath=@vendor/black-lamp/yii2-slider/common/migrations
+yii migrate --migrationPath=@vendor/black-lamp/yii2-slider/src/common/migrations
 ```
 #### Add module to application config
 Module for backend
@@ -29,7 +29,7 @@ Module for backend
 'modules' => [
      // ...
      'slider' => [
-         'class' => bl\slider\backend\SliderModule::className()
+         'class' => bl\slider\backend\Module::class
      ]
 ]
 ```
@@ -75,7 +75,7 @@ class Article extends ActiveRecord
         return [
             // ...
             'slider' => [
-                'class' => \bl\slider\common\behaviors\SliderBehavior::className()
+                'class' => \bl\slider\common\behaviors\SliderBehavior::class
             ],
         ];
     }

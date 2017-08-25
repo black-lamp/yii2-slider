@@ -54,7 +54,7 @@ class SliderWidget extends Widget
     {
         $this->_slider = Slider::find()
             ->key($this->sliderKey)
-            ->withSlides()
+            ->withSlides('position')
             ->one();
     }
 

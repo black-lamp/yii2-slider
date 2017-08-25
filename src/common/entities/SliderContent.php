@@ -35,6 +35,15 @@ class SliderContent extends ActiveRecord
         return 'slider_content';
     }
 
+    public function rules()
+    {
+        return [
+            ['content', 'string'],
+            ['position', 'number']
+        ];
+    }
+
+
     /**
      * @inheritdoc
      */

@@ -38,7 +38,7 @@ class SliderContent extends ActiveRecord
     public function rules()
     {
         return [
-            ['content', 'string'],
+            [['content', 'params', 'alt'], 'string'],
             ['position', 'number']
         ];
     }
